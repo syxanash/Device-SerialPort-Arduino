@@ -58,7 +58,7 @@ sub initialize {
     $self->{'DSP'}->stopbits( $self->{'stopbits'} );
 }
 
-sub comunicate {
+sub communicate {
 
     my $self  = shift;
     my $chars = shift;
@@ -133,12 +133,12 @@ Version 0.01
 
   # Send something via Serial
 
-  $Arduino->comunicate('oh hi!!11');
+  $Arduino->communicate('oh hi!!11');
 
 =head1 DESCRIPTION
 
 The C<Device::SerialPort::Arduino> is a class which aims to be an easier
-way to write Perl applications which easily comunicate with Arduino.
+way to write Perl applications which easily communicate with Arduino.
 If you'd like to create an application using this module you firstly
 have to declare many parameters such as port, baudrate, databits etc.
 Remember that, some parameters such as databits, parity and stopbits,
@@ -146,7 +146,7 @@ shouldn't be changed for a well serial comunication with your Arduino.
 
 =head1 METHODS
 
-Here are some methods which will be used to comunicate with your device.
+Here are some methods which will be used to communicate with your device.
 
 =over
 
@@ -157,9 +157,9 @@ using the method C<lookfor> contained into C<Device::SerialPort>
 You can also send via C<receive> an integer parameter, if you'd like to delay
 the recepit of information from your Arduino board.
 
-=item $arduino->comunicate( $chars )
+=item $arduino->communicate( $chars )
 
-The method C<comunicate> simply sends to your Arduino board characters taken
+The method C<communicate> simply sends to your Arduino board characters taken
 as a parameter, using the method C<write> of C<Device::SerialPort>
 
 =back
