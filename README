@@ -1,7 +1,7 @@
 Device-SerialPort-Arduino
 
 The Device::SerialPort::Arduino is a class which aims to be an easier
-way to write Perl applications which easily comunicate with Arduino.
+way to write Perl applications which easily communicate with Arduino.
 
 Before Install this module you'll need to install the module
 Device::SerialPort, which you can download here:
