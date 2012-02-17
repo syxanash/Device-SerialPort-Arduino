@@ -1,4 +1,4 @@
-Device-SerialPort-Arduino
+Device-SerialPort-Arduino 0.7
 
 The Device::SerialPort::Arduino is a class which aims to be an easier
 way to write Perl applications which easily communicate with Arduino.
@@ -11,7 +11,7 @@ http://search.cpan.org/~cook/Device-SerialPort-1.04/SerialPort.pm
 either install it simply with the command:
     cpan Device::SerialPort
 
-or if you're on Ubuntu or Debian-like distro:
+or if you're on Ubuntu or Debian-like distros:
     sudo apt-get install libdevice-serialport-perl
 
 INSTALLATION
