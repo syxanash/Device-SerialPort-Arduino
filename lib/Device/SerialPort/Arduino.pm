@@ -3,12 +3,13 @@ package Device::SerialPort::Arduino;
 use strict;
 use warnings;
 
-use vars qw($VERSION);
 use Time::HiRes;
 use Carp;
 use Device::SerialPort;
 
-our $VERSION = '0.02';
+use vars qw($VERSION);
+
+our $VERSION = '0.07';
 
 sub new {
     my $class = shift;
@@ -38,6 +39,12 @@ sub initialize {
     $self->{'DSP'} = Device::SerialPort->new( $self->{'port'} )
       or croak "Can't open " . $self->{'port'} . " - $!\n";
 
+    # Checks if the baudrate was defined otherwise sets a default
+    # value which is 9600
+
+    $self->{'baudrate'} = 9600
+      unless ( defined( $self->{'baudrate'} ) );
+
     $self->{'DSP'}->baudrate( $self->{'baudrate'} );
 
     # Checks for some default parameters which shouldn't be changed
@@ -62,10 +69,14 @@ sub communicate {
 
     my $self  = shift;
     my $chars = shift;
+    
+    # Returns 0 if $chars is an empty string
 
     return 0 unless $chars;
 
     $self->{'DSP'}->write($chars);
+
+    return $chars;
 }
 
 sub receive {
@@ -105,7 +116,7 @@ Device::SerialPort::Arduino - A friendly way to interface Perl with your Arduino
 
 =head1 VERSION
 
-Version 0.02
+Version 0.07
 
 =head1 SYNOPSIS
 
@@ -133,7 +144,8 @@ Version 0.02
 
   # Send something via Serial
 
-  $Arduino->communicate('oh hi!!11');
+  $Arduino->communicate('oh hi!!11')
+    or die 'Warning, empty string: ', "$!\n";
 
 =head1 DESCRIPTION
 
@@ -142,7 +154,7 @@ way to write Perl applications which easily communicate with Arduino.
 If you'd like to create an application using this module you firstly
 have to declare many parameters such as port, baudrate, databits etc.
 Remember that, some parameters such as databits, parity and stopbits,
-shouldn't be changed for a well serial comunication with your Arduino.
+shouldn't be changed for a well serial communication with your Arduino.
 
 =head1 METHODS
 
@@ -166,21 +178,23 @@ as a parameter, using the method C<write> of C<Device::SerialPort>
 
 =head1 AUTHOR
 
-Simone, Syxanash, C<< <syxanash at gmail.com> >>
+Simone 'Syxanash' Marzulli, C<< <syxanash at cpan.org> >>
 
 =head1 DEPENDENCIES
 
 Device::SerialPort ~ http://search.cpan.org/~cook/Device-SerialPort-1.04/SerialPort.pm
 
-vars ~ http://perldoc.perl.org/vars.html
-
 =head1 SEE ALSO
+
+Carp ~ http://search.cpan.org/~zefram/Carp-1.25/lib/Carp.pm
+
+Time::HiRes ~ http://search.cpan.org/~zefram/Time-HiRes-1.9725/HiRes.pm
 
 http://arduino.cc/playground/Interfacing/PERL
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<syxanash at gmail.com>, I will be notified, and then you'll
+Please report any bugs or feature requests to C<syxanash at cpan.org>, I will be notified, and then you'll
 automatically be notified of progress on your bug as I make changes.
 
 =head1 SUPPORT
@@ -191,7 +205,7 @@ You can find documentation for this module with the perldoc command.
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2012 Simone, Syxanash.
+Copyright 2012 Simone 'Syxanash' Marzulli.
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of either: the GNU General Public License as published
