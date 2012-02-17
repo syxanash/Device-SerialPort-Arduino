@@ -1,5 +1,9 @@
 Revision history for Device-SerialPort-Arduino
 
-0.01    Date/time
-        First version, released on an unsuspecting world.
+0.07    17/02/2012
+        * Corrected some errors in the documentation.
+        * Edited the method initialize
+
+0.02    15/02/2012
+        * Released the first version.
 
