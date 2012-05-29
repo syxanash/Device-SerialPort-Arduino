@@ -167,7 +167,7 @@ Here are some methods which will be used to communicate with your device.
 The method C<receive> checks if there's a stream of information via serial port
 using the method C<lookfor> contained into C<Device::SerialPort>
 You can also send via C<receive> an integer parameter, if you'd like to delay
-the recepit of information from your Arduino board.
+the receipt of information from your Arduino board.
 
 =item $arduino->communicate( $chars )
 
